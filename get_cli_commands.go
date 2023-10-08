@@ -6,6 +6,8 @@ type cliCommand struct {
 	callback    func() error
 }
 
+var conf = config{}
+
 func getCliCommands() map[string]cliCommand {
 	return map[string]cliCommand{
 		"help": {
@@ -17,6 +19,22 @@ func getCliCommands() map[string]cliCommand {
 			name:        "exit",
 			description: "Stops the program",
 			callback:    exit,
+		},
+		"map": {
+			name:        "map",
+			description: "shows next 20 pokemon location areas",
+			callback: func() error {
+				Map(&conf)
+				return nil
+			},
+		},
+		"mapb": {
+			name:        "mapb",
+			description: "shows previous 20 pokemon location areas",
+			callback: func() error {
+				Mapb(&conf)
+				return nil
+			},
 		},
 	}
 }
